@@ -1,0 +1,6 @@
+{
+  "name": "كراش - CRASH AI Predictor",
+  "description": "سكريبت كراش لتوقعات الألعاب وتأكيد الاتصال بالمنصات مع البروموكود الرسمي MXG1",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+:root {
+  --neon-blue: #00E5FF;
+  --accent-neon-blue: #00E5FF;
+  --neon-red: #FF3131;
+  --accent-red: #FF3131;
+  --neon-red-dark: #C62828;
+  --w: #ffffff;
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+  --overlayA: rgba(0, 0, 0, 0.12);
+  --overlayB: rgba(0, 0, 0, 0.20);
+  --card: rgba(0, 0, 0, 0.25);
+  --border: rgba(0, 229, 255, 0.25);
+  --shadow: rgba(0, 0, 0, 0.45);
+  --ok: #00E5FF;
+  --bad: #FF3131;
+  --r: 18px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Almarai', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Tahoma, Arial, sans-serif;
+  font-weight: 700;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  direction: rtl;
+  font-weight: 700;
+}
+
+/* Custom fonts helper classes */
+.font-orbitron {
+  font-family: 'Orbitron', monospace, sans-serif;
+  font-weight: 800;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', 'Orbitron', serif, sans-serif;
+  font-weight: 900;
+}
+
+.font-almarai {
+  font-family: 'Almarai', sans-serif;
+  font-weight: 700;
+}
+
+/* Conic gradient rotating border for pills */
+.pill-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+  border: 2px solid transparent;
+}
+
+.pill-border::before {
+  content: "";
+  position: absolute;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  border-radius: 999px;
+  background: conic-gradient(from 0deg, var(--accent-red), var(--accent-neon-blue), var(--accent-red));
+  z-index: -1;
+  animation: rotateBorder 4s linear infinite;
+  filter: blur(5px);
+  opacity: 0.85;
+}
+
+.pill-border::after {
+  content: "";
+  position: absolute;
+  top: 2px; left: 2px; right: 2px; bottom: 2px;
+  background: #0a0a0a;
+  border-radius: 999px;
+  z-index: -1;
+}
+
+@keyframes rotateBorder {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: .85; }
+  50% { transform: scale(1.45); opacity: 1; }
+}
+
+.animate-pulse-dot {
+  animation: pulseDot 1.2s ease-in-out infinite;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { transform: scale(0.98); opacity: 0.92; }
+  50% { transform: scale(1.02); opacity: 1; }
+}
+
+.animate-ambient-pulse {
+  animation: ambientPulse 3s infinite ease-in-out;
+}
+
+@keyframes glitchEffect {
+  0%, 90%, 100% { transform: translate(0); opacity: 1; }
+  91% { transform: translate(-3px, 2px); opacity: 0.8; }
+  92% { transform: translate(3px, -1px); opacity: 0.9; }
+  93% { transform: translate(-2px, -2px); opacity: 1; }
+}
+
+.animate-glitch {
+  animation: glitchEffect 5s infinite steps(1);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmerText {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--neon-red), var(--neon-blue), var(--neon-red));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 3s ease infinite;
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 40px rgba(255,49,49,.12), 0 0 30px rgba(0,229,255,.12);
+  }
+  50% {
+    box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 60px rgba(255,49,49,.25), 0 0 50px rgba(0,229,255,.22);
+  }
+}
+
+.animate-card-glow {
+  animation: cardGlow 3s ease-in-out infinite;
+}
+
+@keyframes selectedGlow {
+  0%, 100% { box-shadow: 0 0 35px rgba(0,229,255,.28), 0 0 50px rgba(255,49,49,.18); }
+  50% { box-shadow: 0 0 55px rgba(0,229,255,.45), 0 0 70px rgba(255,49,49,.30); }
+}
+
+.animate-selected-glow {
+  animation: selectedGlow 2s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.animate-float {
+  animation: floatAnim 3s ease-in-out infinite;
+}
+
+@keyframes laserScanX {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+@keyframes laserScanY {
+  0% { left: 0%; }
+  50% { left: 100%; }
+  100% { left: 0%; }
+}
+
+.laser-line-x {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00E5FF, transparent);
+  opacity: 0.6;
+  pointer-events: none;
+  animation: laserScanX 4s ease-in-out infinite;
+}
+
+.laser-line-y {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(0deg, transparent, #FF3131, transparent);
+  opacity: 0.6;
+  pointer-events: none;
+  animation: laserScanY 4s ease-in-out infinite 2s;
+}
+
+@keyframes glitchError {
+  0% {
+    transform: translate(0);
+    text-shadow: 2px 0 0 rgba(255,0,0,0.7), -2px 0 0 rgba(0,255,255,0.7);
+  }
+  20% {
+    transform: translate(-3px, 2px);
+    text-shadow: -2px 0 0 rgba(255,0,0,0.7), 2px 0 0 rgba(0,255,255,0.7);
+  }
+  40% {
+    transform: translate(3px, -1px);
+    text-shadow: 2px 0 0 rgba(0,255,255,0.7), -2px 0 0 rgba(255,0,0,0.7);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+    text-shadow: -2px 0 0 rgba(255,0,0,0.7), 2px 0 0 rgba(0,255,255,0.7);
+  }
+  80% {
+    transform: translate(1px, 3px);
+    text-shadow: 2px 0 0 rgba(255,0,255,0.7), -2px 0 0 rgba(255,255,0,0.7);
+  }
+  100% {
+    transform: translate(0);
+    text-shadow: 2px 0 0 rgba(255,0,0,0.7), -2px 0 0 rgba(0,255,255,0.7);
+  }
+}
+
+.glitch-text {
+  animation: glitchError 0.15s infinite;
+  color: #ff5555 !important;
+  font-weight: 900 !important;
+}
+
+/* Button sweep light animation */
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,.25) 50%, transparent 60%);
+  transition: transform .6s;
+  transform: rotate(25deg) translateX(-100%);
+}
+
+.btn-sweep:hover::after {
+  transform: rotate(25deg) translateX(100%);
+}
